@@ -1,4 +1,6 @@
 import 'package:advanced_widgets/views/color_picker_widget.dart';
+import 'package:advanced_widgets/views/weather_painter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +16,10 @@ class WeatherApp extends StatefulWidget {
 
 class _WeatherAppState extends State<WeatherApp> {
   late Brightness brightness;
+  double opacity = 0.5;
 
   @override
   Widget build(BuildContext context) {
-    print('BUILD');
     return ThemeController(
       myThemeData: context.watch<ThemeState>().myThemeData,
       child: SizedBox(
@@ -73,8 +75,8 @@ class _WeatherAppState extends State<WeatherApp> {
                           appBarTitleTextColor: Colors.white,
                         ),
                         ColorPickerWidget(
-                          color: Colors.orange,
-                          backGroundColor: Colors.orange.shade300,
+                          color: Colors.white,
+                          backGroundColor: Colors.white,
                           appBarTitleTextColor: Colors.blue,
                         ),
                         ColorPickerWidget(
@@ -84,6 +86,32 @@ class _WeatherAppState extends State<WeatherApp> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 30),
+                    Builder(builder: (BuildContext context) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width / 5 * 4,
+                        child: Slider(
+                          thumbColor:
+                              ThemeController.of(context).backGroundColor,
+                          inactiveColor:
+                              ThemeController.of(context).appBarTitleTextColor,
+                          min: 0.0,
+                          max: 1.0,
+                          value: opacity,
+                          divisions: 10,
+                          onChanged: (double value) {
+                            setState(() {
+                              opacity = value;
+                            });
+                          },
+                          activeColor: CupertinoColors.activeGreen,
+                        ),
+                      );
+                    }),
+                    CustomPaint(
+                      size: Size(double.infinity, 200),
+                      painter: WeatherPainter(opacity: opacity),
+                    )
                   ],
                 )));
       })),

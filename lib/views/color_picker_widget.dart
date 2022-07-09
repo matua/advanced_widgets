@@ -24,7 +24,8 @@ class ColorPickerWidget extends StatelessWidget {
           height: 50,
           width: 50,
           child: Container(
-            color: color,
+            decoration: BoxDecoration(
+                color: color, border: Border.all(color: Colors.black)),
           ),
         ));
   }

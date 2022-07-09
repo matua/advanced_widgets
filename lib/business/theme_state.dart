@@ -1,5 +1,6 @@
-import 'package:advanced_widgets/business/theme_controller.dart';
 import 'package:flutter/material.dart';
+
+import '../data/model/my_theme_data.dart';
 
 class ThemeState extends ChangeNotifier {
   MyThemeData myThemeData = MyThemeData(
@@ -10,9 +11,13 @@ class ThemeState extends ChangeNotifier {
 
   void changeTheme(
       Color appBarColor, Color backGroundColor, Color appBarTitleTextColor) {
-    myThemeData.appBarColor = appBarColor;
-    myThemeData.backGroundColor = backGroundColor;
-    myThemeData.appBarTitleTextColor = appBarTitleTextColor;
-    notifyListeners();
+    MyThemeData newMyThemeData = myThemeData.copyWith(
+        appBarColor: appBarColor,
+        backGroundColor: backGroundColor,
+        appBarTitleTextColor: appBarTitleTextColor);
+    if (newMyThemeData != myThemeData) {
+      myThemeData = newMyThemeData;
+      notifyListeners();
+    }
   }
 }
