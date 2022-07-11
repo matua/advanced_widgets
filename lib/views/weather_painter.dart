@@ -86,7 +86,7 @@ class WeatherPainter extends CustomPainter {
           degreesToRadians(350),
           true)
       ..addRect(
-          Rect.fromCenter(center: Offset(225, 210), width: 73, height: 50))
+          Rect.fromCenter(center: Offset(205, 210), width: 98, height: 50))
       ..close();
 
     canvas.drawPath(cloudPath, cloud);
@@ -107,7 +107,7 @@ class WeatherPainter extends CustomPainter {
           degreesToRadians(350),
           true)
       ..addRect(
-          Rect.fromCenter(center: Offset(225, 210), width: 73, height: 50))
+          Rect.fromCenter(center: Offset(205, 210), width: 98, height: 50))
       ..close();
 
     canvas.drawPath(grayCloudPath, grayCloud);

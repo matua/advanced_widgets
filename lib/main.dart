@@ -6,5 +6,7 @@ import 'business/theme_state.dart';
 
 void main() {
   runApp(ChangeNotifierProvider<ThemeState>(
-      create: (BuildContext context) => ThemeState(), child: WeatherApp()));
+    create: (BuildContext context) => ThemeState(),
+    child: WeatherApp(),
+  ));
 }
