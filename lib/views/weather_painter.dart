@@ -41,31 +41,31 @@ class WeatherPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint sun = Paint()
+    final Paint sunPaint = Paint()
       ..color = Colors.amber.withOpacity(_getSunOpacity(opacity));
 
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2 + 15), 75, sun);
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 35, sunPaint);
 
-    final Paint cloud = Paint()
+    final Paint cloudPaint = Paint()
       ..color =
           Colors.lightBlueAccent.shade100.withOpacity(_getCloudOpacity(opacity))
       ..strokeWidth = 10
       ..style = PaintingStyle.fill;
 
-    final Paint grayCloud = Paint()
+    final Paint grayCloudPaint = Paint()
       ..color = Colors.grey.withOpacity(_getDropsAndGrayCloudOpacity(opacity))
       ..strokeWidth = 10
       ..style = PaintingStyle.fill;
 
-    final Paint drop1 = Paint()
+    final Paint drop1Paint = Paint()
       ..color = Color.fromRGBO(97, 92, 154, 255)
           .withOpacity(_getDropsAndGrayCloudOpacity(opacity))
       ..style = PaintingStyle.fill;
-    final Paint drop2 = Paint()
+    final Paint drop2Paint = Paint()
       ..color = Color.fromRGBO(156, 164, 180, 255)
           .withOpacity(_getDropsAndGrayCloudOpacity(opacity))
       ..style = PaintingStyle.fill;
-    final Paint drop3 = Paint()
+    final Paint drop3Paint = Paint()
       ..color = Color.fromRGBO(152, 193, 215, 255)
           .withOpacity(_getDropsAndGrayCloudOpacity(opacity))
       ..style = PaintingStyle.fill;
@@ -73,81 +73,77 @@ class WeatherPainter extends CustomPainter {
     final Path cloudPath = Path()
       ..arcTo(
           Rect.fromCircle(
-              center: Offset(size.width / 2 - 40, size.height / 2 + 85),
-              radius: 50),
+              center: Offset(size.width - 95, size.height / 2 + 25),
+              radius: 25),
           degreesToRadians(180),
           degreesToRadians(350),
-          true)
-      ..arcTo(
+          true)..arcTo(
           Rect.fromCircle(
-              center: Offset(size.width / 2 + 50, size.height / 2 + 60),
-              radius: 75),
+              center: Offset(size.width - 55, size.height / 2 + 15),
+              radius: 35),
           degreesToRadians(180),
           degreesToRadians(350),
           true)
-      ..addRect(
-          Rect.fromCenter(center: Offset(205, 210), width: 98, height: 50))
+      ..addRect(Rect.fromCenter(center: Offset(125, 85), width: 40, height: 30))
       ..close();
 
-    canvas.drawPath(cloudPath, cloud);
+    canvas.drawPath(cloudPath, cloudPaint);
 
     final Path grayCloudPath = Path()
       ..arcTo(
           Rect.fromCircle(
-              center: Offset(size.width / 2 - 40, size.height / 2 + 85),
-              radius: 50),
+              center: Offset(size.width - 95, size.height / 2 + 25),
+              radius: 25),
           degreesToRadians(180),
           degreesToRadians(350),
-          true)
-      ..arcTo(
+          true)..arcTo(
           Rect.fromCircle(
-              center: Offset(size.width / 2 + 50, size.height / 2 + 60),
-              radius: 75),
+              center: Offset(size.width - 55, size.height / 2 + 15),
+              radius: 35),
           degreesToRadians(180),
           degreesToRadians(350),
           true)
-      ..addRect(
-          Rect.fromCenter(center: Offset(205, 210), width: 98, height: 50))
+      ..addRect(Rect.fromCenter(center: Offset(125, 85), width: 40, height: 30))
       ..close();
 
-    canvas.drawPath(grayCloudPath, grayCloud);
+    canvas.drawPath(grayCloudPath, grayCloudPaint);
 
     final Path rainDrop1Path = Path()
       ..addRRect(RRect.fromRectAndRadius(
           Rect.fromCenter(
-              center: Offset(size.width / 2 - 30, size.height / 2 + 120),
-              width: 21,
-              height: 50),
+              center: Offset(size.width - 90, size.height / 2 + 45),
+              width: 10,
+              height: 25),
           Radius.circular(10)));
 
     final Path rainDrop2Path = Path()
       ..addRRect(RRect.fromRectAndRadius(
           Rect.fromCenter(
-              center: Offset(size.width / 2 + 10, size.height / 2 + 120),
-              width: 21,
-              height: 35),
+              center: Offset(size.width - 70, size.height / 2 + 45),
+              width: 10,
+              height: 18),
           Radius.circular(10)));
 
     final Path rainDrop3Path = Path()
       ..addRRect(RRect.fromRectAndRadius(
           Rect.fromCenter(
-              center: Offset(size.width / 2 + 45, size.height / 2 + 130),
-              width: 21,
-              height: 60),
+              center: Offset(size.width - 50, size.height / 2 + 45),
+              width: 10,
+              height: 30),
           Radius.circular(10)));
 
     final Path rainDrop2Path2 = Path()
       ..addRRect(RRect.fromRectAndRadius(
           Rect.fromCenter(
-              center: Offset(size.width / 2 - 10, size.height / 2 + 170),
-              width: 21,
-              height: 45),
+              center: Offset(size.width - 80, size.height / 2 + 70),
+              width: 10,
+              height: 23),
           Radius.circular(10)));
 
-    canvas.drawPath(rainDrop1Path, drop1);
-    canvas.drawPath(rainDrop2Path, drop2);
-    canvas.drawPath(rainDrop3Path, drop3);
-    canvas.drawPath(rainDrop2Path2, drop2);
+    canvas.drawPath(rainDrop1Path, drop1Paint);
+    canvas.drawPath(rainDrop2Path, drop2Paint);
+    canvas.drawPath(rainDrop3Path, drop3Paint);
+    canvas.drawPath(rainDrop2Path2, drop2Paint);
   }
 
   @override
