@@ -6,12 +6,6 @@ part 'my_theme_data.freezed.dart';
 
 @unfreezed
 class MyThemeData with _$MyThemeData {
-  // MyThemeData({
-  //   required this.appBarColor,
-  //   required this.backGroundColor,
-  //   required this.appBarTitleTextColor,
-  // });
-
   factory MyThemeData({
     required Color? appBarColor,
     required Color? backGroundColor,
